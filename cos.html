@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetics</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .navbar-custom {
+            background-color: #FF70AB;
+
+        }
+
+        .navbar-custom .navbar-brand,
+        .navbar-custom .nav-link {
+            color: black;
+
+        }
+
+        .navbar-custom .nav-link:hover {
+            color: #FFFFFF;
+
+        }
+
+        .dropdown-menu {
+            background-color: #FF69B4;
+
+        }
+
+        .dropdown-item {
+            color: #FFFFFF;
+        }
+
+        .dropdown-item:hover {
+            background-color: #FF1493;
+            color: #FFFFFF;
+        }
+
+
+
+
+        .carousel-item img {
+            width: 100%;
+            /* Full width */
+            height: 500px;
+            /* Fixed height */
+            object-fit: cover;
+            /* Cover the area */
+        }
+
+        /* Media query for tablets and larger mobile devices */
+        @media (max-width: 768px) {
+            .carousel-item img {
+                height: 300px;
+                /* Adjust height for tablets */
+            }
+        }
+
+        /* Media query for small devices (phones) */
+        @media (max-width: 576px) {
+            .carousel-item img {
+                height: 200px;
+                /* Adjust height for small phones */
+            }
+        }
+
+        /* Ensure carousel controls are not too large on small devices */
+        @media (max-width: 576px) {
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 5%;
+                /* Smaller width for controls */
+            }
+
+            .carousel-control-prev-icon,
+            .carousel-control-next-icon {
+                background-size: 50%;
+                /* Smaller icon size */
+            }
+        }
+
+        /* Product card styles */
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            height: 400px;
+            /* Increased height to accommodate buttons */
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: contain;
+            /* Changed to contain to show full image */
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card .card-body {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            /* background-color: rgba(255, 20, 147, 0.7); */
+            /* Semi-transparent pink background */
+            color: black;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-card .card-title {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .product-card .btn {
+            margin: 5px;
+            font-size: 0.9rem;
+        }
+
+        .product-card .add-to-cart {
+            background-color: #FF1493;
+            border: none;
+        }
+
+
+        .product-card .add-to-cart:hover {
+            background-color: #FF69B4;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #ff69b4;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .about {
+            padding: 2rem 0;
+        }
+
+        .about h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* About section styles */
+        .about img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .about p {
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        header {
+            padding: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff69b4, #FF1493);
+            color: #fff;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .col-3 {
+            flex-basis: calc(33.33% - 20px);
+        }
+
+        .col-full {
+            flex-basis: 100%;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 1.4em;
+            margin-top: 0;
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #6e8efb;
+            font-size: 1.2em;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            .col-3 {
+                flex-basis: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        .icon {
+            margin-right: 10px;
+            color: #FF1493;
+            /* This is a pink color, you can adjust as needed */
+            font-size: 1.2em;
+        }
+
+        .color-swatches {
+    display: flex;
+    justify-content: center;
+}
+
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+    </style>
+
+    <script>
+        function addCard() {
+            alert(" added to cart!");
+        }
+
+
+     
+    function changeImage(imageId, swatchElement) {
+        // Get the image element
+        var image = document.getElementById(imageId);
+        
+        // Get the image URL from the data attribute of the clicked swatch
+        var newImageUrl = swatchElement.getAttribute('data-image');
+        
+        // Update the image source
+        image.src = newImageUrl;
+    }
+
+
+    </script>
+</head>
+
+<body>
+    <!-- <nav class="navbar navbar-expand-lg navbar-custom" style="font-size: 22px;">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="font-weight: 600; font-size: 25px;">Shree Product</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Products</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Skincare</a></li>
+                            <li><a class="dropdown-item" href="#">Makeup</a></li>
+                            <li><a class="dropdown-item" href="#">Hair Care</a></li>
+                            <li><a class="dropdown-item" href="#">Fragrance</a></li>
+                        </ul>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+
+
+    <nav class="navbar navbar-expand-lg navbar-custom" style="font-size: 22px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style=" font-size: 25px"> <img
+                    src="./shree-gujarati-logo_214323-48-removebg-preview (1).png" alt="" height="60px"
+                    width="90px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 40%;">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#brand">Brand</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Skincare</a></li>
+                            <li><a class="dropdown-item" href="#makeup">Makeup</a></li>
+                            <li><a class="dropdown-item" href="#">Hair Care</a></li>
+                            <li><a class="dropdown-item" href="#fragrance">Fragrance</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+
+                </ul>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div id="cosmeticsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://buddymantra.com/wp-content/uploads/2020/02/Lakme-Banner-new_tcm1255-515196.jpg"
+                    class="d-block w-100" alt="Makeup Collection">
+            </div>
+            <div class="carousel-item">
+                <img src="https://cdn.shopify.com/s/files/1/0561/4259/4241/files/L_Oreal_Paris.jpg?v=1635168393"
+                    class="d-block w-100" alt="Skincare Routine">
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.cossouq.com/media/catalog/category/1920x550_Coloressence-Banner.jpg"
+                    class="d-block w-100" alt="Makeup Application">
+            </div>
+        </div>
+        <!-- <button class="carousel-control-prev" type="button" data-bs-target="#cosmeticsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#cosmeticsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button> -->
+    </div>
+
+
+
+
+    <!-- about -->
+    <!-- About Section -->
+    <div class="container my-5" id="about" style="background-color: black;">
+        <header>
+            <h1>Contact Us</h1>
+        </header>
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0" style="margin-top: 50px;">
+                <img src="l.jpg" alt="About Us" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6" style="color: #f9f9f9;">
+                <p>
+                    Welcome to Shree Beauty Stationery, where elegance meets functionality. Our brand is dedicated to
+                    providing high-quality beauty stationery that blends sophistication with practicality. From
+                    luxurious notepads to exquisite organizers, our products are designed for beauty enthusiasts who
+                    value both style and substance.
+                </p>
+                <p>
+                    At Shree Beauty Stationery, we believe that every detail matters. Our team meticulously curates each
+                    item to ensure it meets our standards of excellence. We are passionate about enhancing your beauty
+                    routine with tools that inspire creativity and organization.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Product Section -->
+    <div class="container my-5" id="makeup">
+        <header>
+            <h1>Our Product</h1>
+        </header>
+        <div class="row" style="margin-top: 50px;">
+            <div class="col-md-4 mb-4">
+                <div class="card product-card">
+                    <img id="product-image-1" src="https://example.com/default-image.jpg" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Lipstick</h5>
+                        <button class="btn btn-primary add-to-cart" onclick="addCard()">Add to Cart</button>
+                        <div class="color-swatches mt-2">
+                            <span class="color-swatch" data-image="http://cdn.shopify.com/s/files/1/0014/3514/0183/products/Shade-01.png?v=1653489172" style="background-color: #FF0000;" onclick="changeImage('product-image-1', this)"></span>
+                            <span class="color-swatch" data-image="https://example.com/pink-image.jpg" style="background-color: #FF69B4;" onclick="changeImage('product-image-1', this)"></span>
+                            <span class="color-swatch" data-image="https://example.com/purple-image.jpg" style="background-color: #FF1493;" onclick="changeImage('product-image-1', this)"></span>
+                            <span class="color-swatch" data-image="https://example.com/brown-image.jpg" style="background-color: #8B0000;" onclick="changeImage('product-image-1', this)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4 mb-4">
+                <div class="card product-card">
+                    <img src="http://cdn.shopify.com/s/files/1/0014/3514/0183/products/Shade-01.png?v=1653489172"
+                        class="card-img-top" alt="Foundation">
+                    <div class="card-body">
+                        <h5 class="card-title">Foundation</h5>
+                        <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card product-card">
+                    <img src="https://images-static.nykaa.com/media/catalog/product/f/4/f4ed626LAKME00000467.jpg"
+                        class="card-img-top" alt="Mascara">
+                    <div class="card-body">
+                        <h5 class="card-title">Mascara</h5>
+                        <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2nd part -->
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card product-card">
+                    <img src="https://scale.coolshop-cdn.com/product-media.coolshop-cdn.com/AH6YE9/d2c3d56e77bf44549e15c91e1260b539.jpg/f/maybelline-master-primer-20-illuminating.jpg"
+                        class="card-img-top" alt="Lipstick">
+                    <div class="card-body">
+                        <h5 class="card-title">Primer</h5>
+                        <button class="btn btn-primary add-to-cart" onclick="addCard()">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card product-card">
+                    <img src="http://n3.sdlcdn.com/imgs/a/u/8/Lakme-Absolute-Beige-Honey-Concealer-SDL616200105-1-1b76c.jpg"
+                        class="card-img-top" alt="Foundation">
+                    <div class="card-body">
+                        <h5 class="card-title">Concealer</h5>
+                        <button class="btn btn-primary add-to-cart">Add to Cart</button>
+
+
+                        <div class="color-swatches mt-2">
+                            <span class="color-swatch" style="background-color: #F5DEB3;"></span>
+                            <span class="color-swatch" style="background-color: #D2B48C;"></span>
+                            <span class="color-swatch" style="background-color: #CD853F;"></span>
+                            <span class="color-swatch" style="background-color: #8B4513;"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card product-card">
+                    <img src="https://s3.r29static.com/bin/entry/c74/x,80/2052654/image.jpg" class="card-img-top"
+                        alt="Mascara">
+                    <div class="card-body">
+                        <h5 class="card-title">Lipstick</h5>
+                        <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3rd -->
+
+        <div class="row">
+            <div class="col-md-4 mb-4" id="fragrance">
+                <div class="card product-card">
+                    <img src="https://n3.sdlcdn.com/imgs/a/n/y/Viwa-Something-Something-Blue-Perfume-SDL389102895-3-32658.jpg"
+                        class="card-img-top" alt="Lipstick">
+                    <div class="card-body">
+                        <h5 class="card-title">Something</h5>
+                        <button class="btn btn-primary add-to-cart" onclick="addCard()">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card product-card">
+                    <img src="https://оптом-духи.рф/files/products/301_1.800x600w.jpg" class="card-img-top"
+                        alt="Foundation">
+                    <div class="card-body">
+                        <h5 class="card-title">Blackberry</h5>
+                        <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card product-card">
+                    <img src="https://cdn.tirabeauty.com/v2/billowing-snowflake-434234/tira-p/wrkr/products/pictures/item/free/resize-w:540/fogg/945332/0/kSzZRus4Gq-XDRT0Zv1Q-1.png"
+                        class="card-img-top" alt="Mascara">
+                    <div class="card-body">
+                        <h5 class="card-title">Fogg</h5>
+                        <button class="btn btn-primary add-to-cart">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+    <!-- contact -->
+    <header>
+        <h1>Contact Us</h1>
+    </header>
+
+    <main>
+        <div class="row">
+            <section class="col-3">
+                <h2><i class="fas fa-map-marker-alt icon"></i>Address</h2>
+                <p>123 Main Street, Anytown, State 12345</p>
+            </section>
+
+            <section class="col-3">
+                <h2><i class="fas fa-phone icon"></i>Call Us</h2>
+                <p>Phone: (555) 123-4567</p>
+                <p>Toll-free: 1-800-555-1234</p>
+            </section>
+
+            <section class="col-3">
+                <h2><i class="fas fa-envelope icon"></i>Email</h2>
+                <p>info@example.com</p>
+            </section>
+        </div>
+
+        <div class="row">
+            <section class="col-full">
+                <h2><i class="fas fa-location-dot icon"></i>Location</h2>
+                <div class="map-container">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1972735376975!2d-73.98663748487031!3d40.75791384350632!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1628100628304!5m2!1sen!2sus"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('section, .brand-section, .category-section').forEach(section => {
+                section.style.display = 'none';
+            });
+    
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    
+        function showBrand(brandId) {
+            // Hide all sections
+            document.querySelectorAll('section, .brand-section, .category-section').forEach(section => {
+                section.style.display = 'none';
+            });
+    
+            // Show the selected brand section
+            document.getElementById(brandId).style.display = 'block';
+        }
+    
+        function showCategory(categoryId) {
+            // Hide all sections
+            document.querySelectorAll('section, .brand-section, .category-section').forEach(section => {
+                section.style.display = 'none';
+            });
+    
+            // Show the selected category section
+            document.getElementById(categoryId).style.display = 'block';
+        }
+    
+        function addToCart(productName) {
+            alert(productName + " added to cart!");
+        }
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom" style="font-size: 22px;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#" style="font-size: 25px"> 
+                <img src="./shree-gujarati-logo_214323-48-removebg-preview (1).png" alt="" height="60px" width="90px">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 40%;">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="#" onclick="showSection('home')">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('about')">About</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Brands
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="showBrand('lakme')">Lakme</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showBrand('maybelline')">Maybelline</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showBrand('loreal')">L'Oreal</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('face')">Face</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('lips')">Lips</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="showCategory('eyes')">Eyes</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('contact')">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Brand Sections -->
+<div id="lakme" class="brand-section" style="display: none;">
+    <h2>Lakme Products</h2>
+    <!-- Add Lakme products here -->
+</div>
+
+<div id="maybelline" class="brand-section" style="display: none;">
+    <h2>Maybelline Products</h2>
+    <!-- Add Maybelline products here -->
+</div>
+
+<div id="loreal" class="brand-section" style="display: none;">
+    <h2>L'Oreal Products</h2>
+    <!-- Add L'Oreal products here -->
+</div>
+
+<!-- Category Sections -->
+<div id="face" class="category-section" style="display: none;">
+    <h2>Face Makeup</h2>
+    <!-- Add face makeup products here -->
+</div>
+
+<div id="lips" class="category-section" style="display: none;">
+    <h2>Lip Products</h2>
+    <!-- Add lip products here -->
+</div>
+
+<div id="eyes" class="category-section" style="display: none;">
+    <h2>Eye Makeup</h2>
+    <!-- Add eye makeup products here -->
+</div>
+<div id="home">
+    <!-- Your home content -->
+</div>
+
+<div id="about" class="container my-5" style="background-color: black;">
+    <!-- Your about content -->
+</div>
+
+<div id="contact">
+    <!-- Your contact content -->
+</div>
+<div id="lakme" class="brand-section" style="display: none;">
+    <h2>Lakme Products</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card product-card">
+                <img src="path_to_lakme_product_image.jpg" class="card-img-top" alt="Lakme Product">
+                <div class="card-body">
+                    <h5 class="card-title">Lakme Lipstick</h5>
+                    <button class="btn btn-primary add-to-cart" onclick="addToCart('Lakme Lipstick')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- Add more Lakme products here -->
+    </div>
+</div>
+
+<!-- Repeat similar structure for Maybelline and L'Oreal -->
+
+<div id="face" class="category-section" style="display: none;">
+    <h2>Face Makeup</h2>
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card product-card">
+                <img src="path_to_foundation_image.jpg" class="card-img-top" alt="Foundation">
+                <div class="card-body">
+                    <h5 class="card-title">Foundation</h5>
+                    <button class="btn btn-primary add-to-cart" onclick="addToCart('Foundation')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- Add more face products here -->
+    </div>
+</div>
+
+<!-- Repeat similar structure for Lips and Eyes categories -->
+</body>
+</html>
